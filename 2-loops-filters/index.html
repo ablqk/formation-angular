@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="tuto">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hello Angular</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+  </head>
+  
+  <body ng-controller="ShipController as ship">
+    <ul>
+      <li ng-repeat="member in ship.team | orderBy: 'name'">
+        <h3>{{member.name}}</h3>
+        <p>{{member.email}}</p>
+        <p>{{member.enroled | date:'dd MMMM yyyy'}}</p>
+      </li>
+    </ul>
+    
+    
+    <h2>Ajouter</h2>
+    
+    <form name="memberForm" ng-controller="MembersController as membersCtrl" ng-submit="memberForm.$valid && membersCtrl.addMember(ship.team)" novalidate>
+      <!--  Live Preview -->
+      <blockquote>
+        <h3>{{membersCtrl.member.name}}</h3>
+        <p>{{membersCtrl.member.email}}</p>
+        <p>{{Date.now() | date:'dd MMMM yyyy'}}</p>
+      </blockquote>
+
+      <!--  Review Form -->
+      <h4>Submit a Review</h4>
+      <fieldset class="form-group">
+        <input ng-model="membersCtrl.member.name" type="text" class="form-control" placeholder="Name" required />
+      </fieldset>
+      <fieldset class="form-group">
+        <input ng-model="membersCtrl.member.email" type="email" class="form-control" placeholder="email" />
+      </fieldset>
+      <fieldset class="form-group">
+        <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+      </fieldset>
+    </form>
+
+    <script type="text/javascript" src="../angular.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    
+  </body>
+</html>
